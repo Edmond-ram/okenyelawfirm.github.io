@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Law Firm Client Portal</title>
+    <style>
+        body {
+            background-color: #fbfefe; /* Teal background color */
+            color: #fff; /* White text color */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .logo-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .logo-container img {
+            max-width: 200px; /* Adjust the max-width as needed */
+        }
+        .form-container {
+            background-color: rgb(4, 51, 79); /* Darker teal for form background */
+            padding: 20px;
+            border-radius: 8px;
+            border: 2px solid #72003f; /* Teal border for form container */
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-control {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .select-control {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .submit-btn {
+            background-color: #007272; /* Dark teal for submit button */
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .search-bar {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+        }
+        .loader {
+            border: 8px solid #f3f3f3; /* Light gray border */
+            border-top: 8px solid #007272; /* Teal border for loader */
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            display: none;
+            margin: auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .case-details {
+            display: none;
+            background-color: #fff; /* White background for case details */
+            padding: 20px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>Okenye Fredrick & Associate Advocates</h1>
+    </div>
+
+    <div class="logo-container">
+        <img src="images/logoo.png" alt="Logo">
+    </div>
+
+    <div class="form-container">
+        <div class="loader" id="loader"></div>
+
+        <label for="inputField" class="input-details">INPUT DETAILS:</label>
+
+
+
+        <div class="form-group">
+            <label for="clientName">Client Name:</label>
+            <input type="text" id="clientName" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="caseNumber">Case Number:</label>
+            <input type="text" id="caseNumber" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="caseType">Case Type:</label>
+            <select id="caseType" class="select-control" required>
+                <option value="divorce">Divorce</option>
+                <option value="litigation">Business Litigation</option>
+                <!-- Add more case types as needed -->
+            </select>
+        </div>
+
+        <button type="button" class="submit-btn" onclick="searchCase()">Search</button>
+
+        <div class="case-details" id="caseDetails">
+            <!-- Case details will be displayed here -->
+        </div>
+    </div>
+</div>
+
+<script>
+    function searchCase() {
+        // Simulate a request to the server
+        document.getElementById("loader").style.display = "block";
+
+        // Assume the server responds after a short delay (simulated with setTimeout)
+        setTimeout(function() {
+            // Simulated case data
+            var caseData = {
+                clientName: document.getElementById("clientName").value,
+                caseNumber: document.getElementById("caseNumber").value,
+                caseType: document.getElementById("caseType").value
+            };
+
+            // Display case details
+            displayCaseDetails(caseData);
+        }, 1500); // Simulated delay of 1.5 seconds
+    }
+
+    function displayCaseDetails(data) {
+        document.getElementById("loader").style.display = "none";
+
+        // Display case details in the case-details div
+        var caseDetailsDiv = document.getElementById("caseDetails");
+        caseDetailsDiv.innerHTML = `
+            <h2>Case Details</h2>
+            <p><strong>Client Name:</strong> ${data.clientName}</p>
+            <p><strong>Case Number:</strong> ${data.caseNumber}</p>
+            <p><strong>Case Type:</strong> ${data.caseType}</p>
+            <!-- Add more case details as needed -->
+        `;
+
+        // Show the case details div
+        caseDetailsDiv.style.display = "block";
+    }
+</script>
+
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Website</title>
+    <!-- Add Font Awesome CDN link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Teal background for the footer */
+        footer {
+            background-color: #023c3c; /* Teal color */
+            color: #fff; /* White text */
+            padding: 20px;
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+        }
+
+        /* Styles for the links in the footer */
+        footer a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        /* Styles for clickable icons */
+        .footer-icon {
+            font-size: 24px;
+            margin-right: 5px;
+        }
+
+        /* Styles for the back to top button */
+        #toTopBtn {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #022828; /* Darker teal for button */
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main content of the website goes here -->
+
+    <!-- Footer section -->
+    <footer>
+        <div>
+            <h2>Contact Us</h2>
+            <p>237 Hardy Karen Nairobi</p>
+            <p>Email: info@okenyefredric&advocates.com</p>
+            <p>Phone: +254728899527 or +25726790112</p>
+            <!-- Contact form can be added here -->
+        </div>
+
+        <div>
+    <h2>Follow Us</h2>
+    <!-- Social media icons using Font Awesome -->
+    <a href="https://www.facebook.com" target="_blank" class="footer-icon"><i class="fab fa-facebook"></i></a>
+    <a href="https://twitter.com" target="_blank" class="footer-icon"><i class="fab fa-twitter"></i></a>
+    <a href="https://www.instagram.com" target="_blank" class="footer-icon"><i class="fab fa-instagram"></i></a>
+    <a href="https://wa.me/254728899527" target="_blank" class="footer-icon"><i class="fab fa-whatsapp"></i></a>
+    <a href="#" target="_blank" class="footer-icon"><i class="fab fa-skype"></i></a>
+    <a href="#" target="_blank" class="footer-icon"><i class="fab fa-telegram"></i></a>
+</div>
+
+
+        <div>
+            <h2>Navigation</h2>
+            <!-- Navigation links -->
+            <a href="#">Home</a><br>
+            <a href="#">About Us</a><br>
+            <a href="#">Services</a><br>
+            <a href="#">Contact Us</a><br>
+        </div>
+
+        <div>
+            <h2>Get In Touch</h2>
+            <p>We invite you to explore our website to,</p>
+            <p>learn more about our legal services, don't hesitate to contact us.</p>
+                <p>Your legal journey begins with a conversation..</p>
+            <!-- Newsletter signup form can be added here -->
+        </div>
+
+        
+    </footer>
+
+    <!-- Back to Top button -->
+    <div id="toTopBtn">Back to Top</div>
+
+    <!-- JavaScript for Back to Top functionality -->
+    <script>
+        // Show/hide Back to Top button based on scroll position
+        window.onscroll = function() {
+            scrollFunction();
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("toTopBtn").style.display = "block";
+            } else {
+                document.getElementById("toTopBtn").style.display = "none";
+            }
+        }
+
+        // Scroll to the top when the button is clicked
+        document.getElementById("toTopBtn").onclick = function() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        };
+    </script>
+</body>
+</html>
+
+    
+    <!-- footer section end -->
+    <!-- copyright section start -->
+    <div class="copyright_section">
+        <div class="container">
+            <p class="copyright_text">2023 All Rights Reserved. Design by <a href="https://edmondmkenya.com"
+                    style="color: white;">Edmond</a></p>
+        </div>
+    </div>
+
+</body>
+
+</html>
